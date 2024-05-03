@@ -126,7 +126,7 @@
                                     <a href="product/show/<?= $b->menu_seo ?>"><img src="<?= base_url(); ?>assets/img/menu_folder/<?= $b->menu_foto ?>" alt="" style="width: 300px; height: 250px; overflow: hidden; position: relative"></a>
                                 </div>
                                 <h3><?= $b->menu_nama ?></h3>
-                                <p class="product-price"><span>Per Kg</span> Rp<?= number_format($b->menu_harga, 2, ',', '.') ?> </p>
+                                <p class="product-price"><span>Start from</span> Rp<?= number_format($b->menu_harga, 2, ',', '.') ?> </p>
                                 <button class="cart-btn" style="text-transform: capitalize; font-weight: 400; font-family: Poppins, sans-serif; font-size: 14px; border: 0px" id=""><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                             </div>
 
