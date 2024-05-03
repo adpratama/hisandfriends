@@ -38,7 +38,7 @@
                                         <?php
                                         foreach ($categories as $c) {
                                         ?>
-                                            <option value="<?= $c->Id ?>" <?= $c->Id == $products["Id"] ? 'selected' : '' ?>><?= $c->kategori_nama ?></option>
+                                            <option value="<?= $c->Id ?>" <?= $c->Id == $products["kategori_id"] ? 'selected' : '' ?>><?= $c->kategori_nama ?></option>
                                         <?php
                                         }
                                         ?>
@@ -49,9 +49,9 @@
                                     <input type="number" class="form-control" name="product_price" id="product_price" value="<?= $products["menu_harga"] ?>">
                                 </div>
                                 <div class="col-12">
-                                    <label for="content_artikel" class="form-label">Content</label>
-                                    <input type="hidden" name="deskripsi" value='<?= $this->session->flashdata('deskripsi') ?>' class="form-control">
-                                    <div id="content_artikel" style="height: 150px;"><?= $this->session->flashdata('deskripsi') ?></div>
+                                    <label for="deskripsi" class="form-label">Content</label>
+                                    <input type="hidden" name="deskripsi" value='<?= $products["menu_deskripsi"] ?>' class="form-control">
+                                    <div id="deskripsi" style="height: 150px;"><?= $products["menu_deskripsi"] ?></div>
                                 </div>
                                 <div class="text-end">
                                     <button type="submit" class="btn btn-primary">Submit</button>

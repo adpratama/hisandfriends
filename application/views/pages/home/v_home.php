@@ -134,7 +134,7 @@
                                 <p class="product-price">
                                     <span>Start from</span>
                                 </p>
-                                <p class=" ml-5">
+                                <p class=" ml-5 justify-content-between">
                                     <?= $deskripsi_with_css ?>
                                 </p>
                                 <button class="cart-btn" style="text-transform: capitalize; font-weight: 400; font-family: Poppins, sans-serif; font-size: 14px; border: 0px" id=""><i class="fas fa-shopping-cart"></i> Add to Cart</button>

@@ -11,8 +11,7 @@ class M_Category extends CI_Model
 
     public function list_category()
     {
-        $query = $this->db->order_by('kategori_nama', 'ASC')->get('kategori')->result();
-        return $query;
+        return $this->db->order_by('kategori_nama', 'ASC')->get('kategori')->result();
     }
 
     public function add_category($data)
