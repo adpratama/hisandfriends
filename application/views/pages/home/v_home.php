@@ -92,8 +92,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="section-title">
-                        <h3><span class="green-text">Best</span> Seller</h3>
-                        <p>Our best seller menus.</p>
+                        <h3><span class="green-text">Top</span> Rent</h3>
+                        <p>Our top rent fleets.</p>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
             if (empty($best)) {
             ?>
                 <div class="col-lg-8 offset-lg-2 text-center">
-                    <h3 align="center">The menu is not yet available</h3>
+                    <h3 align="center">The fleet is not yet available</h3>
                 </div>
                 <br><br>
             <?php
@@ -120,13 +120,23 @@
                             echo form_hidden('qty', 1);
                             echo form_hidden('price', $b->menu_harga);
                             echo form_hidden('name', $b->menu_nama);
-                            echo form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
+                            echo form_hidden('redirect_page', str_replace('index.php/', '', current_url()));
+
+                            $deskripsi = $b->menu_deskripsi;
+
+                            $deskripsi_with_css = str_replace('<ul>', '<ul style="list-style: none; text-align: left; margin-left: 1rem;">', $deskripsi);
+                            ?>
                             <div class="single-product-item">
                                 <div class="product-image">
                                     <a href="product/show/<?= $b->menu_seo ?>"><img src="<?= base_url(); ?>assets/img/menu_folder/<?= $b->menu_foto ?>" alt="" style="width: 300px; height: 250px; overflow: hidden; position: relative"></a>
                                 </div>
                                 <h3><?= $b->menu_nama ?></h3>
-                                <p class="product-price"><span>Start from</span> Rp<?= number_format($b->menu_harga, 2, ',', '.') ?> </p>
+                                <p class="product-price">
+                                    <span>Start from</span>
+                                </p>
+                                <p class=" ml-5">
+                                    <?= $deskripsi_with_css ?>
+                                </p>
                                 <button class="cart-btn" style="text-transform: capitalize; font-weight: 400; font-family: Poppins, sans-serif; font-size: 14px; border: 0px" id=""><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                             </div>
 
@@ -139,7 +149,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-6 offset-md-3 offset-lg-0 text-center">
-                        <a href="<?= base_url('product'); ?>" class="cart-btn"><i class="fas fa-shopping-cart"></i>Browse Other Menus...</a>
+                        <a href="<?= base_url('product'); ?>" class="cart-btn"><i class="fas fa-shopping-cart"></i>Browse other fleets...</a>
                     </div>
                 </div>
             <?php
