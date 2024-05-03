@@ -1,0 +1,110 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Product extends CI_Controller
+{
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/userguide3/general/urls.html
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('session');
+		$this->load->library('pagination');
+		$this->load->helper('string');
+		$this->load->model('M_Product');
+		$this->load->model('M_Home');
+		$this->load->helper('date');
+	}
+
+	public function index()
+	{
+		$config['base_url'] = base_url('product/index');
+		// $config['page_query_string'] = TRUE;
+		// $config['use_page_numbers'] = TRUE;
+		$config['total_rows'] = $this->M_Product->get_published_count();
+		$config['per_page'] = 9;
+		$config['num_link'] = 2;
+		$config['full_tag_open'] = '<div class="pagination-wrap"><ul>';
+		$config['full_tag_close'] = '</ul></div>';
+		$config['first_link'] = FALSE;
+		$config['last_link'] = FALSE;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Prev';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] =  '<li> <a href="#" class="active">';
+		$config['cur_tag_close'] = '</a> </li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['display_pages'] = TRUE;
+		$from = $this->uri->segment(3);
+		$this->pagination->initialize($config);
+		$limit = $config['per_page'];
+		// $offset = html_escape($this->input->get('per_page'));
+
+		$cart_content = $this->cart->contents();
+
+		$jml_item = 0;
+
+		foreach ($cart_content as $value) {
+			$jml_item = $jml_item + $value['qty'];
+		}
+
+		$data = [
+			'title' => 'Product',
+			'pages' => 'pages/product/v_browse_product',
+			'product' => $this->M_Product->list_product_limit($limit, $from),
+			'cart_content' => $cart_content,
+			'jml_item' => $jml_item,
+			'total' => number_format($this->cart->total())
+		];
+
+		// var_dump($data);exit;
+
+		$this->load->view('index', $data);
+	}
+
+	public function show()
+	{
+		$id = $this->uri->segment(3);
+
+		$cart_content = $this->cart->contents();
+
+		$jml_item = 0;
+
+		foreach ($cart_content as $value) {
+			$jml_item = $jml_item + $value['qty'];
+		}
+
+		$data = [
+			'title' => 'Home',
+			'pages' => 'pages/product/v_detail_product',
+			'product_detail' => $this->M_Product->detail_product($id),
+			'jml_item' => $jml_item,
+			'best' => $this->M_Product->best(),
+			'total' => number_format($this->cart->total())
+		];
+
+		$this->load->view('index', $data);
+	}
+}
