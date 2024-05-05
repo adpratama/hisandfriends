@@ -26,8 +26,8 @@
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center">
-                                <a href="index.html" class="d-flex align-items-center w-auto">
-                                    <img src="<?= base_url(); ?>assets/img/logo_mlejit_crop.png" alt="" width="175px">
+                                <a href="index.html" class="d-flex align-items-center w-auto mb-3">
+                                    <img src="<?= base_url(); ?>assets/img/logo-horizontal.png" alt="" width="175px">
                                     <!-- <span class="d-none d-lg-block">mlejit kopi</span> -->
                                 </a>
                             </div>

@@ -37,4 +37,9 @@ class M_Order extends CI_Model
 	{
 		return $this->db->order_by('no_invoice', 'DESC')->get('transaction')->result();
 	}
+
+	public function detail_order($id)
+	{
+		return $this->db->from('transaction_detail td')->join('menu m', 'td.id_product = m.menu_id', 'left')->where('id_transaction', $id)->order_by('Id', 'ASC')->get()->result();
+	}
 }
