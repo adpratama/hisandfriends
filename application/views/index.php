@@ -188,7 +188,7 @@
                         <ul>
                             <li>SMART Residence No. 31 Jl. Tukad Balian No. 100 Renon - Denpasar Selatan Kota Denpasar, Bali, Indonesia 80226</li>
                             <li>support@mlejit.net</li>
-                            <li>+62 881-0376-48000</li>
+                            <li>+62 818 1860 0040</li>
                         </ul>
                     </div>
                 </div>

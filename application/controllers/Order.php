@@ -166,6 +166,7 @@ class Order extends CI_Controller
 
         $no = 1;
         foreach ($cart as $c) {
+
             // ambil menu_jual sebelumnya sesuai id product
             $item_jual = $this->M_Product->check_qty($c['id']);
 
@@ -193,24 +194,15 @@ class Order extends CI_Controller
 
         $b = implode('%0a', $a);
 
-        // $no_whatsapp = "08170107303";
-        $no_whatsapp2 = "085240719210";
-        // $wa_pemesan = $data["telepon_pemesan"];
+        $wa_pemesan = $data["telepon_pemesan"];
+        $msg2 = 'Halo, kak *' . $data['nama_pemesan'] . '*. Terima kasih sudah order ke His and Friends. Ini daftar pesanan yang sudah Kamu buat:%0a%0aPesanan: %0a' . $b . '%0a%0a*Pickup date: ' . format_indo($this->input->post('pickup_date')) . '%0a*Opsi sewa: ' . ($this->input->post('opsi_sewa')) . ',-*' . '*%0a%0aNotes: ' . $data['notes'] . '%0a%0aAdmin kami akan segera menghubungi. Mohon ditunggu ya.';
 
-        // message with PPN 10%
-        // $msg = '*New Order* %0aNama pemesan: ' . $data['nama_pemesan'] . '%0aEmail: ' . $data['email_pemesan'] . '%0aAlamat: ' . $data['alamat_pemesan'] . '%0aPhone: ' . $data['telepon_pemesan'] . '%0aNotes: ' . $data['notes'] . '%0a%0aPesanan: %0a' . $b . '%0a%0aSubotal: Rp' . number_format($subtotal) . ',-' . '%0a%0aPPn 10%: Rp' . number_format($ppn) . ',-' . '%0a%0a*Total: Rp' . number_format($total) . ',-*';
+        $this->api_whatsapp->wa_notif($msg2, $wa_pemesan);
 
-        // $msg2 = 'Halo, kak *' . $data['nama_pemesan'] . '*. Terima kasih sudah order ke Mlejit. Ini daftar pesanan yang Kamu buat:%0a%0aPesanan: %0a' . $b . '%0a%0aSubotal: Rp' . number_format($subtotal) . ',-' . '%0a%0aPPn 10%: Rp' . number_format($ppn) . ',-' . '%0a%0a*Total: Rp' . number_format($total) . ',-*' . '*%0a%0aNotes: ' . $data['notes'] . '%0a%0aPesanan akan segera datang. Mohon ditunggu ya.';
-
+        $no_whatsapp2 = "081818600040";
         $msg = '*New Order* %0aNama pemesan: ' . $data['nama_pemesan'] . '%0aEmail: ' . $data['email_pemesan'] . '%0aAlamat: ' . $data['alamat_pemesan'] . '%0aPhone: ' . $data['telepon_pemesan'] . '%0aNotes: ' . $data['notes'] . '%0a%0aPesanan: %0a' . $b . '%0a%0a*Pickup date: ' . format_indo($this->input->post('pickup_date')) . '%0a*Opsi sewa: ' . ($this->input->post('opsi_sewa'));
 
-
         $this->api_whatsapp->wa_notif($msg, $no_whatsapp2);
-
-        // $msg2 = 'Halo, kak *' . $data['nama_pemesan'] . '*. Terima kasih sudah order ke His and Friends. Ini daftar pesanan yang sudah Kamu buat:%0a%0aPesanan: %0a' . $b . '%0a%0a*Pickup date: ' . format_indo($this->input->post('pickup_date')) . '%0a*Opsi sewa: ' . ($this->input->post('opsi_sewa')) . ',-*' . '*%0a%0aNotes: ' . $data['notes'] . '%0a%0aAdmin kami akan segera menghubungi. Mohon ditunggu ya.';
-
-        // $this->api_whatsapp->wa_notif($msg, $no_whatsapp);
-        // $this->api_whatsapp->wa_notif($msg2, $wa_pemesan);
 
         $this->cart->destroy();
         redirect('order');
