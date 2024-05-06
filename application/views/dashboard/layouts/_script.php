@@ -20,3 +20,18 @@
 <script src="<?= base_url('assets/'); ?>dashboard/js/sweetalert2/sweetalert2.all.min.js"></script>
 
 <script src="<?= base_url('assets/'); ?>dashboard/js/script.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("form").on("submit", function() {
+            Swal.fire({
+                title: "Loading...",
+                timerProgressBar: true,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            })
+        });
+    });
+</script>

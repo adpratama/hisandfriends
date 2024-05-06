@@ -79,7 +79,7 @@
                             </form><!-- Vertical Form -->
                         </div>
                         <div class="card-body">
-                            <img src="<?= base_url(); ?>assets/img/menu_folder/<?= $products["menu_foto"] ?>" class="card-img-top" alt="..." width="300" height="250">
+                            <img src="<?= base_url(); ?>assets/img/menu_folder/<?= $products["menu_foto"] ?>" class="card-img-top w-100" alt="..." width="" height="">
                         </div>
                     </div>
                 </div>
