@@ -22,16 +22,37 @@ class Product extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('session');
-		$this->load->library('pagination');
-		$this->load->helper('string');
-		$this->load->model('M_Product');
-		$this->load->model('M_Home');
-		$this->load->helper('date');
+		$this->load->library(['session', 'pagination']);
+		$this->load->helper(['date', 'string']);
+		$this->load->model(['M_Product', 'M_Home', 'M_Logging']);
 	}
 
 	public function index()
 	{
+
+		$ipAddress = $this->input->ip_address();
+
+		// Mendapatkan User-Agent
+		$userAgent = $this->input->user_agent();
+
+		// Mendapatkan parameter UTM dari URL
+		$utm_source = $this->input->get('utm_source');
+		$utm_medium = $this->input->get('utm_medium');
+
+		// Contoh: Menyimpan data ke dalam array untuk disimpan ke database atau log
+
+		if ($utm_source && $utm_medium) {
+			$userData = array(
+				'ip_address' => $ipAddress,
+				'user_agent' => $userAgent,
+				'utm_source' => $utm_source,
+				'utm_medium' => $utm_medium,
+				'access_time' => date('Y-m-d H:i:s')
+			);
+
+			$this->M_Logging->addLogAccess($userData);
+		}
+
 		$config['base_url'] = base_url('product/index');
 		// $config['page_query_string'] = TRUE;
 		// $config['use_page_numbers'] = TRUE;

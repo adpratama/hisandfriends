@@ -16,17 +16,21 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('username', 'Username', 'required|trim');
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
 
-		if ($this->form_validation->run() ==  false) {
-			$data = [
-				'title' => 'Login',
-				'style' => 'dashboard/layouts/_style',
-				'pages' => 'dashboard/pages/auth/v_login',
-				'script' => 'dashboard/layouts/_script'
-			];
-			$this->load->view('dashboard/pages/auth/index', $data);
+		if ($this->session->userdata('is_logged_in')) {
+			redirect('admin/dashboard');
 		} else {
-			// validasinya sukses
-			$this->_login();
+			if ($this->form_validation->run() ==  false) {
+				$data = [
+					'title' => 'Login',
+					'style' => 'dashboard/layouts/_style',
+					'pages' => 'dashboard/pages/auth/v_login',
+					'script' => 'dashboard/layouts/_script'
+				];
+				$this->load->view('dashboard/pages/auth/index', $data);
+			} else {
+				// validasinya sukses
+				$this->_login();
+			}
 		}
 	}
 

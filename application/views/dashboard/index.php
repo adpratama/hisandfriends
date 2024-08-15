@@ -123,12 +123,12 @@
                 </a>
             </li>
             <li class="nav-heading">Configuration</li>
-            <!-- <li class="nav-item">
-                <a class="nav-link <?php if ($this->uri->segment(2) != 'setting') echo 'collapsed' ?>" href="<?= base_url() ?>admin/setting">
-                    <i class="bi bi-archive"></i>
-                    <span>Settings</span>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($this->uri->segment(2) != 'logging') echo 'collapsed' ?>" href="<?= base_url() ?>admin/logging">
+                    <i class="bi bi-clock-history"></i>
+                    <span>Logging</span>
                 </a>
-            </li> -->
+            </li>
 
             <li class="nav-item">
                 <a href="<?= base_url('auth/logout') ?>" class="nav-link btn-logout <?php if ($this->uri->segment(2) != 'logout') echo 'collapsed' ?>">

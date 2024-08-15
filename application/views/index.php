@@ -48,7 +48,7 @@
                                     <a href="<?= base_url(); ?>">Home</a>
                                 </li>
                                 <li class="<?= ($this->uri->segment(1) == "product") ? 'current-list-item' : '' ?>">
-                                    <a href="<?= base_url('product'); ?>">Fleets</a>
+                                    <a href="<?= base_url('product') . '?utm_source=Website&utm_medium=Website'; ?>">Fleets</a>
                                 </li>
                                 <li class="<?= ($this->uri->segment(1) == "about") ? 'current-list-item' : '' ?>">
                                     <a href="<?= base_url('about'); ?>">About</a>
