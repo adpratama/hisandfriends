@@ -35,7 +35,7 @@
             padding-top: 10px;
             padding-bottom: 10px;
             text-align: left;
-            background-color: #4f3829;
+            background-color: #32a834;
             color: white;
         }
 
@@ -55,7 +55,7 @@
         <tbody>
             <tr>
                 <td style="width: 400px">
-                    <img src="<?= base_url(); ?>assets/img/logo_mlejit_new_crop.png" style="width: 200px;" alt="">
+                    <img src="<?= base_url(); ?>assets/img/logo-his.png" style="width: 200px;" alt="">
                 </td>
                 <td style="width: 400px;">
                     <table>
@@ -67,7 +67,7 @@
                         <tr>
                             <td>Nomor</td>
                             <td>:</td>
-                            <td style="text-align: right"><?= $invoice['no_invoice'] ?></td>
+                            <td style="text-align: right"><?= $invoice['no_invoice'] ?>/INV/BALI/<?= intToRoman(substr($invoice['tanggal_invoice'], 5, 2)) ?>/<?= substr($invoice['tanggal_invoice'], 2, 2) ?></td>
                         </tr>
                     </table>
                 </td>
@@ -85,7 +85,8 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Menu</th>
+                <th>Produk</th>
+                <th>Deskripsi</th>
                 <th>Qty</th>
                 <th>Harga</th>
                 <th>Total</th>
@@ -99,6 +100,7 @@
                 <tr>
                     <td><?= $no++ ?>.</td>
                     <td><?= $d->menu ?></td>
+                    <td><?= $d->deskripsi ?></td>
                     <td class="text-right"><?= number_format($d->qty) ?></td>
                     <td class="text-right"><?= number_format($d->harga) ?></td>
                     <td class="text-right"><?= number_format($d->total) ?></td>
@@ -107,25 +109,30 @@
             endforeach;
             ?>
             <tr>
-                <td class="" colspan="4">SUBTOTAL</td>
+                <td class="" colspan="5">SUBTOTAL</td>
                 <td class="text-right"><?= number_format($invoice['subtotal']) ?></td>
             </tr>
+            <?php
+            if ($invoice['besaran_diskon'] > 0) {
+            ?>
+                <tr>
+                    <td class="" colspan="5">DISKON <?= $invoice['diskon'] * 100 ?>%</td>
+                    <td class="text-right"><?= number_format($invoice['besaran_diskon']) ?></td>
+                </tr>
+            <?php
+            } ?>
             <tr>
-                <td class="" colspan="4">DISKON <?= $invoice['diskon'] * 100 ?>%</td>
-                <td class="text-right"><?= number_format($invoice['besaran_diskon']) ?></td>
-            </tr>
-            <tr>
-                <td class="" colspan="4">GRAND TOTAL</td>
+                <td class="" colspan="5">GRAND TOTAL</td>
                 <td class="text-right"><?= number_format($invoice['total_invoice']) ?></td>
             </tr>
             <tr>
-                <td colspan="5"><?= terbilang($invoice['total_invoice']) ?> Rupiah</td>
+                <td colspan="6"><?= terbilang($invoice['total_invoice']) ?> Rupiah</td>
             </tr>
         </tbody>
     </table>
 
     <p style="margin-top: 30px;">Keterangan: <br><?= $invoice['keterangan'] ?></p>
-    <p style="margin-top: 100px;">Bank BCA 2060888399 a.n Handayani</p>
+    <p style="margin-top: 100px;">Pembayaran untuk invoice ini mohon ditransfer ke rekening <br>Bank BNI 1999888207 a.n PT. Harmoni Inti Sejahtera</p>
 </body>
 
 </html>

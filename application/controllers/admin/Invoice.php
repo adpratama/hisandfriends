@@ -49,7 +49,7 @@ class Invoice extends CI_Controller
 		$max_num = $this->M_Invoice->select_max();
 
 		if (!$max_num['max']) {
-			$bilangan = 20; // Nilai Proses
+			$bilangan = 1; // Nilai Proses
 		} else {
 			$bilangan = $max_num['max'] + 1;
 		}
@@ -72,6 +72,7 @@ class Invoice extends CI_Controller
 	{
 		$old_slug = $this->uri->segment(4);
 		$menus = $this->input->post('menu');
+		$deskripsis = $this->input->post('deskripsi');
 		$qtys = $this->input->post('qty');
 		$hargas = $this->input->post('harga');
 		$totals = $this->input->post('total');
@@ -133,6 +134,7 @@ class Invoice extends CI_Controller
 			if (is_array($menus)) {
 				for ($i = 0; $i < count($menus); $i++) {
 					$menu = $menus[$i];
+					$deskripsi = $deskripsis[$i];
 					$qty = preg_replace('/[^a-zA-Z0-9\']/', '', $qtys[$i]);
 					$harga = preg_replace('/[^a-zA-Z0-9\']/', '', $hargas[$i]);
 					$total = preg_replace('/[^a-zA-Z0-9\']/', '', $totals[$i]);
@@ -140,6 +142,7 @@ class Invoice extends CI_Controller
 					$detail_data[] = [
 						'id_invoice' => $id_invoice,
 						'menu' => $menu,
+						'deskripsi' => $deskripsi,
 						'qty' => $qty,
 						'harga' => $harga,
 						'total' => $total,
@@ -249,13 +252,13 @@ class Invoice extends CI_Controller
 	{
 		$inv =  $this->M_Invoice->show($no_inv);
 		$data = [
-			'title_pdf' => 'Invoice Mlejit Coffee No. ' . $no_inv,
+			'title_pdf' => 'Invoice Sewa Motor Bali No. ' . $no_inv,
 			'invoice' => $inv,
 			'details' => $this->M_Invoice->item_list($inv['Id']),
 		];
 
 		// filename dari pdf ketika didownload
-		$file_pdf = 'Invoice Mlejit Coffee No. ' . $no_inv;
+		$file_pdf = 'Invoice Sewa Motor Bali No. ' . $no_inv;
 
 		// setting paper
 		$paper = 'A4';

@@ -89,7 +89,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <!-- <li class="nav-heading">Invoice Mlejit Coffee</li>
+            <li class="nav-heading">Invoice</li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($this->uri->segment(2) != 'invoice') echo 'collapsed' ?>" href="<?= base_url() ?>admin/invoice">
                     <i class="bi bi-journal-check"></i>
@@ -101,7 +101,7 @@
                     <i class="bi bi-journal-check"></i>
                     <span>Customer</span>
                 </a>
-            </li> -->
+            </li>
             <li class="nav-heading">Orders</li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($this->uri->segment(2) != 'order') echo 'collapsed' ?>" href="<?= base_url() ?>admin/order">

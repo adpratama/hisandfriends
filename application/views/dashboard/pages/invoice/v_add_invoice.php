@@ -97,7 +97,8 @@
                                 <thead>
                                     <tr>
                                         <th>Delete</th>
-                                        <th>Menu</th>
+                                        <th>Produk</th>
+                                        <th>Deskripsi</th>
                                         <th style="width: 100px;">Qty</th>
                                         <th style="width: 200px;">Price</th>
                                         <th>Total</th>
@@ -115,6 +116,9 @@
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control" name="menu" oninput="this.value = this.value.toUpperCase()" value="<?= $d->menu ?>">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" name="deskripsi" oninput="this.value = this.value.toUpperCase()" value="<?= $d->deskripsi ?>">
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control" name="qty" value="<?= $d->qty ?>">
@@ -162,7 +166,8 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Menu</th>
+                                                <th>Produk</th>
+                                                <th>Deksripsi</th>
                                                 <th style="width: 100px;">Qty</th>
                                                 <th style="width: 200px;">Price</th>
                                                 <th>Total</th>
@@ -173,6 +178,9 @@
                                             <tr class="barisEdit">
                                                 <td>
                                                     <input type="text" class="form-control" name="newMenu[]" oninput="this.value = this.value.toUpperCase()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="newDeskripsi[]" oninput="this.value = this.value.toUpperCase()">
                                                 </td>
                                                 <td>
                                                     <input type="text" class="form-control" name="newQty[]" value="0">
@@ -274,7 +282,8 @@
                                 <table class="table mt-5">
                                     <thead>
                                         <tr>
-                                            <th>Menu</th>
+                                            <th>Produk</th>
+                                            <th>Deskripsi</th>
                                             <th style="width: 100px;">Qty</th>
                                             <th style="width: 200px;">Price</th>
                                             <th>Total</th>
@@ -285,6 +294,9 @@
                                         <tr class="baris">
                                             <td>
                                                 <input type="text" class="form-control" name="menu[]" oninput="this.value = this.value.toUpperCase()">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="deskripsi[]" oninput="this.value = this.value.toUpperCase()">
                                             </td>
                                             <td>
                                                 <input type="text" class="form-control" name="qty[]" value="0">
