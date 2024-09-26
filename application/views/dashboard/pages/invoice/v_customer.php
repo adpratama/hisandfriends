@@ -68,13 +68,17 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="nama_customer" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="nama_customer" oninput="this.value = this.value.toUpperCase()" required>
+                            <input type="text" class="form-control" name="nama_customer" oninput="this.value = this.value.toUpperCase()" placeholder="Masukkan nama customer..." required>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <label for="telepon_customer" class="form-label">Phone</label>
-                            <input type="text" class="form-control" name="telepon_customer" required>
+                            <input type="text" class="form-control" name="telepon_customer" placeholder="Masukkan nomor telepon..." required>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
+                            <label for="id_number" class="form-label">No. ID</label>
+                            <input type="text" class="form-control" name="id_number" placeholder="Masukkan nomor identitas..." required>
+                        </div>
+                        <div class="col-6 d-none">
                             <label for="status_customer" class="form-label">Status</label>
                             <select name="status_customer" id="status_customer" class="form-control">
                                 <option value="eksternal">Eksternal</option>
@@ -83,7 +87,7 @@
                         </div>
                         <div class="col-12">
                             <label for="alamat_customer" class="form-label">Address</label>
-                            <textarea name="alamat_customer" id="alamat_customer" cols="30" rows="3" class="form-control" required></textarea>
+                            <textarea name="alamat_customer" id="alamat_customer" cols="30" rows="3" class="form-control" placeholder="Masukkan alamat customer..." required></textarea>
                         </div>
                     </div>
                 </div>
@@ -113,11 +117,15 @@ foreach ($customers as $i) {
                                 <label for="nama_customer" class="form-label">Name</label>
                                 <input type="text" class="form-control" name="nama_customer" value="<?= $i->nama_customer ?>" oninput="this.value = this.value.toUpperCase()" required>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12">
                                 <label for="telepon_customer" class="form-label">Phone</label>
                                 <input type="text" class="form-control" name="telepon_customer" value="<?= $i->telepon_customer ?>" required>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12">
+                                <label for="id_number" class="form-label">No. ID</label>
+                                <input type="text" class="form-control" name="id_number" value="<?= $i->id_number ?>" required>
+                            </div>
+                            <div class="col-6 d-none">
                                 <label for="status_customer" class="form-label">Status</label>
                                 <select name="status_customer" id="status_customer" class="form-control">
                                     <option <?= ($i->status_customer == "eksternal") ? 'selected' : '' ?> value="eksternal">Eksternal</option>

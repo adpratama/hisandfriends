@@ -44,10 +44,12 @@ class Customer extends CI_Controller
 			'alamat_customer' => $this->input->post('alamat_customer'),
 			'telepon_customer' => $this->input->post('telepon_customer'),
 			'status_customer' => $this->input->post('status_customer'),
+			'id_number' => $this->input->post('id_number'),
 			'slug' => $slug,
 		];
 
 		$old_slug = $this->uri->segment(4);
+
 		if ($old_slug) {
 			$this->M_Customer->update($data, $old_slug);
 

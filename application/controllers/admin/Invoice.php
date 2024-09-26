@@ -256,6 +256,7 @@ class Invoice extends CI_Controller
 			'invoice' => $inv,
 			'details' => $this->M_Invoice->item_list($inv['Id']),
 		];
+		$this->load->view('dashboard/pages/invoice/v_invoice_pdf', $data);
 
 		// filename dari pdf ketika didownload
 		$file_pdf = 'Invoice Sewa Motor Bali No. ' . $no_inv;
