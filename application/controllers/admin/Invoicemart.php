@@ -38,7 +38,7 @@ class Invoicemart extends CI_Controller
 			'pages' => 'dashboard/pages/invoice-mart/v_invoice',
 			'invoices' => $this->M_InvoiceMart->list_invoice(),
 			'customers' => $this->M_Customer->list_customer(),
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 		$this->load->view('dashboard/index', $data);
 	}
@@ -62,7 +62,7 @@ class Invoicemart extends CI_Controller
 			'no_invoice' => $no_inv,
 			'customers' => $this->M_Customer->list_customer(),
 			'customer' => $customer,
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 
 		$this->load->view('dashboard/index', $data);
@@ -173,7 +173,7 @@ class Invoicemart extends CI_Controller
 			'invoice' => $inv,
 			'details' => $this->M_InvoiceMart->item_list($inv['Id']),
 			'customers' => $this->M_Customer->list_customer(),
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 
 		$this->load->view('dashboard/index', $data);

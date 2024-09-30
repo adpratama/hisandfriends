@@ -25,7 +25,7 @@ class Setting extends CI_Controller
 		$data = [
 			'title' => 'Settings',
 			'pages' => 'dashboard/pages/setting/v_setting',
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 		$this->load->view('dashboard/index', $data);
 	}

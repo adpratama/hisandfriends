@@ -29,7 +29,7 @@ class Customer extends CI_Controller
 			"pages" => "dashboard/pages/invoice/v_customer",
 			"customers" => $this->M_Customer->list_customer(),
 			"script" => "dashboard/layouts/_script",
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 		$this->load->view('dashboard/index', $data);
 	}
@@ -75,7 +75,7 @@ class Customer extends CI_Controller
 			'title' => 'Edit Category',
 			'pages' => 'dashboard/pages/category/v_add_category',
 			'category' => $this->M_Category->detail_category($id),
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 
 		$this->load->view('dashboard/index', $data);

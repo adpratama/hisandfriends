@@ -30,7 +30,7 @@ class Product extends CI_Controller
 			'title' => 'Product',
 			'pages' => 'dashboard/pages/products/v_product',
 			'products' => $this->M_Product->list_product(),
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 		$this->load->view('dashboard/index', $data);
 	}
@@ -42,7 +42,7 @@ class Product extends CI_Controller
 			'pages' => 'dashboard/pages/products/v_add_product',
 			'categories' => $this->M_Category->list_category(),
 			'products' => $this->M_Product->list_product(),
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 
 		if (empty($data["categories"])) {
@@ -112,7 +112,7 @@ class Product extends CI_Controller
 			'pages' => 'dashboard/pages/products/v_add_product',
 			'categories' => $this->M_Category->list_category(),
 			'products' => $this->M_Product->detail_product($id),
-			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+			'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
 		];
 
 		$this->load->view('dashboard/index', $data);

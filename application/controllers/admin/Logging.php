@@ -27,7 +27,7 @@ class Logging extends CI_Controller
             "title" => "Logging",
             "pages" => "dashboard/pages/logging/v_logging",
             "logs" => $this->M_Logging->list_log(),
-            'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
+            'user' => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
         ];
         $this->load->view('dashboard/index', $data);
     }
