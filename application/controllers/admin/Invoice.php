@@ -73,6 +73,7 @@ class Invoice extends CI_Controller
 		$old_slug = $this->uri->segment(4);
 		$menus = $this->input->post('menu');
 		$deskripsis = $this->input->post('deskripsi');
+		$haris = $this->input->post('hari');
 		$qtys = $this->input->post('qty');
 		$hargas = $this->input->post('harga');
 		$totals = $this->input->post('total');
@@ -135,6 +136,7 @@ class Invoice extends CI_Controller
 				for ($i = 0; $i < count($menus); $i++) {
 					$menu = $menus[$i];
 					$deskripsi = $deskripsis[$i];
+					$hari = preg_replace('/[^a-zA-Z0-9\']/', '', $haris[$i]);
 					$qty = preg_replace('/[^a-zA-Z0-9\']/', '', $qtys[$i]);
 					$harga = preg_replace('/[^a-zA-Z0-9\']/', '', $hargas[$i]);
 					$total = preg_replace('/[^a-zA-Z0-9\']/', '', $totals[$i]);
@@ -143,6 +145,7 @@ class Invoice extends CI_Controller
 						'id_invoice' => $id_invoice,
 						'menu' => $menu,
 						'deskripsi' => $deskripsi,
+						'hari' => $hari,
 						'qty' => $qty,
 						'harga' => $harga,
 						'total' => $total,
@@ -182,12 +185,14 @@ class Invoice extends CI_Controller
 
 	public function update_item($id_invoice, $id)
 	{
+		$hari = preg_replace('/[^a-zA-Z0-9\']/', '', $this->input->post('hari'));
 		$qty = preg_replace('/[^a-zA-Z0-9\']/', '', $this->input->post('qty'));
 		$harga = preg_replace('/[^a-zA-Z0-9\']/', '', $this->input->post('harga'));
 		$total = preg_replace('/[^a-zA-Z0-9\']/', '', $this->input->post('total'));
 
 		$data = [
 			'menu' => trim($this->input->post('menu')),
+			'hari' => $hari,
 			'qty' => $qty,
 			'harga' => $harga,
 			'total' => $total,
@@ -388,6 +393,7 @@ class Invoice extends CI_Controller
 		} else {
 
 			$menus = $this->input->post('newMenu');
+			$haris = $this->input->post('newHari');
 			$qtys = $this->input->post('newQty');
 			$hargas = $this->input->post('newHarga');
 			$totals = $this->input->post('newTotal');
@@ -400,6 +406,7 @@ class Invoice extends CI_Controller
 			if (is_array($menus)) {
 				for ($i = 0; $i < count($menus); $i++) {
 					$menu = $menus[$i];
+					$hari = preg_replace('/[^a-zA-Z0-9\']/', '', $haris[$i]);
 					$qty = preg_replace('/[^a-zA-Z0-9\']/', '', $qtys[$i]);
 					$harga = preg_replace('/[^a-zA-Z0-9\']/', '', $hargas[$i]);
 					$total = preg_replace('/[^a-zA-Z0-9\']/', '', $totals[$i]);
@@ -407,6 +414,7 @@ class Invoice extends CI_Controller
 					$detail_data[] = [
 						'id_invoice' => $id_inv,
 						'menu' => $menu,
+						'hari' => $hari,
 						'qty' => $qty,
 						'harga' => $harga,
 						'total' => $total,

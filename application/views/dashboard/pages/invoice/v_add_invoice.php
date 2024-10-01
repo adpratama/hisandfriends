@@ -284,6 +284,7 @@
                                         <tr>
                                             <th>Produk</th>
                                             <th>Deskripsi</th>
+                                            <th style="width: 100px;">Hari</th>
                                             <th style="width: 100px;">Qty</th>
                                             <th style="width: 200px;">Price</th>
                                             <th>Total</th>
@@ -297,6 +298,9 @@
                                             </td>
                                             <td>
                                                 <input type="text" class="form-control" name="deskripsi[]" oninput="this.value = this.value.toUpperCase()">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="hari[]" value="0">
                                             </td>
                                             <td>
                                                 <input type="text" class="form-control" name="qty[]" value="0">
@@ -363,6 +367,7 @@
 
             // Kosongkan nilai input di baris baru
             newRow.find('input').val('');
+            newRow.find('input[name="hari[]"]').val('0');
             newRow.find('input[name="qty[]"]').val('0');
             newRow.find('input[name="harga[]"]').val('0');
 
@@ -374,7 +379,7 @@
         });
 
         // Saat input qty atau harga diubah
-        $(document).on('input', 'input[name="qty[]"], input[name="harga[]"]', function() {
+        $(document).on('input', 'input[name="hari[]"], input[name="qty[]"], input[name="harga[]"]', function() {
             var value = $(this).val();
             var formattedValue = parseFloat(value.split('.').join(''));
             $(this).val(formattedValue);
@@ -386,7 +391,7 @@
         });
 
         // Tambahkan event listener untuk event keyup
-        $(document).on('keyup', 'input[name="qty[]"], input[name="harga[]"]', function() {
+        $(document).on('keyup', 'input[name="hari[]"], input[name="qty[]"], input[name="harga[]"]', function() {
             var value = $(this).val().trim(); // Hapus spasi di awal dan akhir nilai
             var formattedValue = formatNumber(parseFloat(value.split('.').join('')));
             $(this).val(formattedValue);
@@ -400,15 +405,18 @@
         });
 
         function hitungTotal(row) {
+            var hari = row.find('input[name="hari[]"]').val().replace(/\./g, ''); // Hapus tanda titik
             var qty = row.find('input[name="qty[]"]').val().replace(/\./g, ''); // Hapus tanda titik
             var harga = row.find('input[name="harga[]"]').val().replace(/\./g, ''); // Hapus tanda titik
+            hari = parseInt(hari); // Ubah string ke angka float
             qty = parseInt(qty); // Ubah string ke angka float
             harga = parseInt(harga); // Ubah string ke angka float
 
+            hari = isNaN(hari) ? 1 : hari;
             qty = isNaN(qty) ? 0 : qty;
             harga = isNaN(harga) ? 0 : harga;
 
-            var total = qty * harga;
+            var total = hari * qty * harga;
             row.find('input[name="total[]"]').val(formatNumber(total));
             updateTotalBelanja();
         }
@@ -485,7 +493,7 @@
         }
 
 
-        $(document).on('input', 'input[name="qty"], input[name="harga"]', function() {
+        $(document).on('input', 'input[name="hari[]"], input[name="qty"], input[name="harga"]', function() {
             var value = $(this).val();
             var formattedValue = parseFloat(value.split('.').join(''));
             $(this).val(formattedValue);
@@ -495,15 +503,18 @@
         });
 
         function hitungTotalItem(row) {
+            var hari = row.find('input[name="hari"]').val().replace(/\./g, ''); // Hapus tanda titik
             var qty = row.find('input[name="qty"]').val().replace(/\./g, ''); // Hapus tanda titik
             var harga = row.find('input[name="harga"]').val().replace(/\./g, ''); // Hapus tanda titik
+            hari = parseInt(hari); // Ubah string ke angka float
             qty = parseInt(qty); // Ubah string ke angka float
             harga = parseInt(harga); // Ubah string ke angka float
 
+            hari = isNaN(hari) ? 1 : hari;
             qty = isNaN(qty) ? 0 : qty;
             harga = isNaN(harga) ? 0 : harga;
 
-            var total = qty * harga;
+            var total = hari * qty * harga;
             row.find('input[name="harga"]').val(formatNumber(harga));
             row.find('input[name="total"]').val(formatNumber(total));
             updateTotalBelanja();
@@ -537,6 +548,7 @@
 
             // Kosongkan nilai input di baris baru
             newRow.find('input').val('');
+            newRow.find('input[name="newHari[]"]').val('0');
             newRow.find('input[name="newQty[]"]').val('0');
             newRow.find('input[name="newHarga[]"]').val('0');
 
@@ -552,7 +564,7 @@
             $(this).closest('.barisEdit').remove();
         });
 
-        $(document).on('input', 'input[name="newQty[]"], input[name="newHarga[]"]', function() {
+        $(document).on('input', 'input[name="newHari[]"], input[name="newQty[]"], input[name="newHarga[]"]', function() {
             var value = $(this).val();
             var formattedValue = parseFloat(value.split('.').join(''));
             $(this).val(formattedValue);
@@ -562,7 +574,7 @@
         });
 
         // Tambahkan event listener untuk event keyup
-        $(document).on('keyup', 'input[name="newQty[]"], input[name="newHarga[]"]', function() {
+        $(document).on('keyup', 'input[name="newHari[]"], input[name="newQty[]"], input[name="newHarga[]"]', function() {
             var value = $(this).val().trim(); // Hapus spasi di awal dan akhir nilai
             var formattedValue = formatNumber(parseFloat(value.split('.').join('')));
             $(this).val(formattedValue);
@@ -574,15 +586,18 @@
         });
 
         function hitungTotalNewItem(row) {
+            var hari = row.find('input[name="newHari[]"]').val().replace(/\./g, ''); // Hapus tanda titik
             var qty = row.find('input[name="newQty[]"]').val().replace(/\./g, ''); // Hapus tanda titik
             var harga = row.find('input[name="newHarga[]"]').val().replace(/\./g, ''); // Hapus tanda titik
+            hari = parseInt(hari); // Ubah string ke angka float
             qty = parseInt(qty); // Ubah string ke angka float
             harga = parseInt(harga); // Ubah string ke angka float
 
+            hari = isNaN(hari) ? 1 : hari;
             qty = isNaN(qty) ? 0 : qty;
             harga = isNaN(harga) ? 0 : harga;
 
-            var total = qty * harga;
+            var total = hari * qty * harga;
             row.find('input[name="newTotal[]"]').val(formatNumber(total));
         }
     });

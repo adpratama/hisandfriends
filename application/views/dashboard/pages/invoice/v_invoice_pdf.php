@@ -156,6 +156,7 @@
                 <th>#</th>
                 <th>Product</th>
                 <th>Description</th>
+                <th>Day</th>
                 <th>Quantity</th>
                 <th>Unit Price</th>
                 <th>Total</th>
@@ -170,6 +171,7 @@
                     <td><?= $no++ ?>.</td>
                     <td><?= $d->menu ?></td>
                     <td><?= $d->deskripsi ?></td>
+                    <td class="text-right"><?= number_format($d->hari) ?> hari</td>
                     <td class="text-right"><?= number_format($d->qty) ?></td>
                     <td class="text-right"><?= number_format($d->harga) ?></td>
                     <td class="text-right"><?= number_format($d->total) ?></td>
@@ -178,7 +180,7 @@
             endforeach;
             ?>
             <tr>
-                <td colspan="4" style="border: 0px;"></td>
+                <td colspan="5" style="border: 0px;"></td>
                 <td class="" colspan="">SUBTOTAL</td>
                 <td class="text-right"><?= number_format($invoice['subtotal']) ?></td>
             </tr>
@@ -186,14 +188,14 @@
             if ($invoice['besaran_diskon'] > 0) {
             ?>
                 <tr>
-                    <td colspan="4" style="border: 0px;"></td>
+                    <td colspan="5" style="border: 0px;"></td>
                     <td class="" colspan="">DISKON <?= $invoice['diskon'] * 100 ?>%</td>
                     <td class="text-right"><?= number_format($invoice['besaran_diskon']) ?></td>
                 </tr>
             <?php
             } ?>
             <tr>
-                <td colspan="4" style="border: 0px;"></td>
+                <td colspan="5" style="border: 0px;"></td>
                 <td class="" colspan="">GRAND TOTAL</td>
                 <td class="text-right"><?= number_format($invoice['total_invoice']) ?></td>
             </tr>
