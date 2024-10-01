@@ -99,7 +99,7 @@
     <table style="margin-bottom: -10px; width: 100%">
         <tbody>
             <tr>
-                <td style="width: ">
+                <td>
                     <img src="<?= base_url(); ?>assets/img/logo_hisfriends.png" style="width: 100px;" alt="">
                     <h3>RENTAL MOTOR BALI</h3>
                     <p>
